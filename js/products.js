@@ -52,5 +52,30 @@ document.addEventListener("DOMContentLoaded", function(e){
             categoriesArray = resultObj.data;
             showCategoriesList(categoriesArray); //arry
         }
+        let usuario = localStorage.getItem('user');
+if (usuario == null) {
+    
+    Swal.fire({
+        
+        text: "Es necesario estar logueado para ver la página",
+        icon: 'warning',
+        
+        confirmButtonColor: '#3085d6',
+        
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+          location.href = 'login.html';
+        }
+      })
+    
+    
+    
+    
+    
+    //alert("Es necesario autenticarse para ver la página");
+    
+} 
     });
 });

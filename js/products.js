@@ -61,7 +61,7 @@ if (usuario == null) {
         icon: 'warning',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK',
-        backdrop: true,
+        
         allowOutsideClick: false,
         stopKeyDownPropagation: true,
       }).then((result) => {

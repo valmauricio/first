@@ -59,10 +59,11 @@ if (usuario == null) {
         
         text: "Es necesario estar logueado para ver la página",
         icon: 'warning',
-        
         confirmButtonColor: '#3085d6',
-        
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        backdrop: true,
+        allowOutsideClick: false,
+        stopKeyDownPropagation: true,
       }).then((result) => {
         if (result.isConfirmed) {
           

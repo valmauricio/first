@@ -13,12 +13,13 @@ document.addEventListener("DOMContentLoaded", function(){
         
         Swal.fire({
             title: 'Seguro que deseas cerrar sesión?',
-            text: "perderas el progreso guardado en tu carrito de ceompras",
+            text: "perderas el progreso guardado en tu carrito de compras",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, deseo cerrar sesión'
+            confirmButtonText: 'Sí, deseo cerrar sesión',
+            cancelButtonText: 'Cancelar'
           }).then((result) => {
             if (result.isConfirmed) {
               Swal.fire(
@@ -57,7 +58,10 @@ if (usuario == null) {
         
         confirmButtonColor: '#3085d6',
         
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        backdrop: true,
+        allowOutsideClick: false,
+        stopKeyDownPropagation: true,
       }).then((result) => {
         if (result.isConfirmed) {
           

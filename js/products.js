@@ -13,6 +13,7 @@ function showCategoriesList(array){
     for(let i = 0; i < array.products.length; i++){ 
         let category = array.products[i];
         htmlContentToAppend += `
+        
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
@@ -31,7 +32,7 @@ function showCategoriesList(array){
             </div>
         </div>
         `
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend; 
+        document.getElementById("cat-list-container").innerHTML = `<p class="centrado">Verás aquí todos los productos de la categoría <b>`+ array.catName +`</b></p>` + htmlContentToAppend; 
     }
 }
 
@@ -46,7 +47,8 @@ EJECUCIÓN:
 */
 
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCTS_URL).then(function(resultObj){
+    
+    getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function(resultObj){
         if (resultObj.status === "ok")
         {
             categoriesArray = resultObj.data;
@@ -77,6 +79,43 @@ if (usuario == null) {
     
     //alert("Es necesario autenticarse para ver la página");
     
-} 
+} else {
+
+    document.getElementById('usuario').innerHTML = usuario;
+    }
+    
+    document.getElementById('cerrar').addEventListener('click',()=>{
+        cerrar();
     });
+    });
+    
+    function cerrar(){
+        
+        // alert("Has cerrado sesión");
+       
+         
+         Swal.fire({
+             title: 'Seguro que deseas cerrar sesión?',
+             text: "perderas el progreso guardado en tu carrito de compras",
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             confirmButtonText: 'Sí, deseo cerrar sesión',
+             cancelButtonText: 'Cancelar'
+           }).then((result) => {
+             if (result.isConfirmed) {
+               Swal.fire(
+                 
+                 'Has cerrado sesión',
+                 
+                 
+               )
+               localStorage.removeItem('user');
+               location.href = 'login.html';
+             }
+           })
+         
+         
+         }
 });

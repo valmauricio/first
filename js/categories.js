@@ -6,6 +6,11 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+
+
+
+
+
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -88,6 +93,59 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+    
+    function cerrar() {
+        // alert("Has cerrado sesión");
+    
+        Swal.fire({
+          title: "Seguro que deseas cerrar sesión?",
+          text: "perderas el progreso guardado en tu carrito de compras",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Sí, deseo cerrar sesión",
+          cancelButtonText: "Cancelar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire("Has cerrado sesión");
+            localStorage.removeItem("user");
+            location.href = "login.html";
+          }
+        });
+      }
+      let usuario = localStorage.getItem("user");
+      if (usuario == null) {
+        Swal.fire({
+          text: "Es necesario estar logueado para ver la página",
+          icon: "warning",
+    
+          confirmButtonColor: "#3085d6",
+    
+          confirmButtonText: "OK",
+    
+          allowOutsideClick: false,
+          stopKeyDownPropagation: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            location.href = "login.html";
+          }
+        });
+    
+        //alert("Es necesario autenticarse para ver la página");
+      } else {
+        document.getElementById("usuario").innerHTML = usuario;
+      }
+    
+      document.getElementById("cerrar").addEventListener("click", () => {
+        cerrar();
+      });
+    
+    
+    
+    
+    
+    
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentCategoriesArray = resultObj.data
@@ -140,4 +198,5 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showCategoriesList();
     });
+    
 });

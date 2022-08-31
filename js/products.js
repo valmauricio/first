@@ -135,4 +135,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
   document.getElementById("rangeFilterCount").addEventListener("click", () => {
     filtrar();
   });
+
+  function limpiar() {
+    document.getElementById("rangeFilterCountMin").value = "";
+    document.getElementById("rangeFilterCountMax").value = "";
+
+    showCategoriesList(categoriesArray);
+  }
+
+  
+
+  document.getElementById("sortDesc").addEventListener("click", () => {
+    categoriesArray.sort((ant,sig)=>ant.cost-sig.cost);
+    showCategoriesList(categoriesArray);
+  });
+  document.getElementById("sortAsc").addEventListener("click", () => {
+    categoriesArray.sort((ant,sig)=>sig.cost-ant.cost);
+    showCategoriesList(categoriesArray);
+  });
+  document.getElementById("sortByCount").addEventListener("click", () => {
+    categoriesArray.sort((ant,sig)=>sig.soldCount-ant.soldCount);
+    showCategoriesList(categoriesArray);
+  });
+
+  document.getElementById("clearRangeFilter").addEventListener("click", () => {
+    limpiar();
+  });
 });

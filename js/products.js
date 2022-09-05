@@ -1,10 +1,13 @@
 //array donde se cargarán los datos recibidos:
 let categoriesArray = [];
+const boton = document.getElementById('boton');
+const buscador = document.getElementById('buscador');
+const lista = document.getElementById('lista');
 
 //función que recibe un array con los datos, y los muestra en pantalla a través el uso del DOM
 function showCategoriesList(array) {
   let htmlContentToAppend = "";
-
+  
   for (let i = 0; i < array.length; i++) {
     let category = array[i];
     htmlContentToAppend +=
@@ -48,7 +51,7 @@ function showCategoriesList(array) {
       `<p class="centrado">Verás aquí todos los productos de la categoría <b>` +
       nombres +
       `</b></p>`;
-  }
+    }
 }
 
 /* 
@@ -94,6 +97,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
       });
     }
   );
+
+
+
+  
 
   function cerrar() {
     // alert("Has cerrado sesión");
@@ -161,4 +168,75 @@ document.addEventListener("DOMContentLoaded", function (e) {
   document.getElementById("clearRangeFilter").addEventListener("click", () => {
     limpiar();
   });
+
+
+  
+const buscar = ()=>{
+  // console.log(buscador.value);
+  htmlContentToAppend = '';
+  
+  
+  const texto = buscador.value.toLowerCase();
+  for(let producto of categoriesArray){
+      let nombre = producto.name.toLowerCase();
+      if(nombre.indexOf(texto) !== -1){
+  htmlContentToAppend += 
+  `
+        
+        <div class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-3">
+                    <img src="` +
+      producto.image +
+      `" alt="product image" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <div class="mb-1">
+                        <h4>` +
+      producto.name +
+      " " +
+      "-" +
+      " " +
+      producto.currency +
+      " " +
+      producto.cost +
+      `</h4> 
+                        <p> ` +
+      producto.description +
+      `</p> 
+                        </div>
+                        <small class="text-muted">` +
+      producto.soldCount +
+      ` vendidos</small> 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        `;
+    document.getElementById("cat-list-container").innerHTML =
+      htmlContentToAppend;
+    document.getElementById("cat").innerHTML =
+      `<p class="centrado">Verás aquí todos los productos de la categoría <b>` +
+      nombres +
+      `</b></p>
+  `
+      }
+  }
+  if(htmlContentToAppend === ""){
+    
+      // alert("no"); 
+      Swal.fire({
+        text: "Lo sentimos, no contamos con el producto que estás buscando",
+        icon: "warning",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK",
+ })
+        
+  }
+  }
+
+  boton.addEventListener('click', buscar);
+buscador.addEventListener('keyup', buscar);
 });

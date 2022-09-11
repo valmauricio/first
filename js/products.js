@@ -4,6 +4,11 @@ const boton = document.getElementById('boton');
 const buscador = document.getElementById('buscador');
 const lista = document.getElementById('lista');
 
+function setObjID(id) {
+  localStorage.setItem("objID", id);
+  window.location = "product-info.html"
+}
+
 //función que recibe un array con los datos, y los muestra en pantalla a través el uso del DOM
 function showCategoriesList(array) {
   let htmlContentToAppend = "";
@@ -13,7 +18,7 @@ function showCategoriesList(array) {
     htmlContentToAppend +=
       `
         
-        <div class="list-group-item list-group-item-action">
+      <div onclick="setObjID(${category.id})" class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
                     <img src="` +
@@ -183,7 +188,7 @@ const buscar = ()=>{
   htmlContentToAppend += 
   `
         
-        <div class="list-group-item list-group-item-action">
+        <div onclick="setObjID(${producto.id})" class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
                     <img src="` +

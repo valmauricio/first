@@ -1,48 +1,44 @@
 function cerrar() {
-    
+
     Swal.fire({
-      title: "Seguro que deseas cerrar sesión?",
-      text: "perderas el progreso guardado en tu carrito de compras",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, deseo cerrar sesión",
-      cancelButtonText: "Cancelar",
+        title: "Seguro que deseas cerrar sesión?",
+        text: "perderas el progreso guardado en tu carrito de compras",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, deseo cerrar sesión",
+        cancelButtonText: "Cancelar",
     }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Has cerrado sesión");
-        localStorage.removeItem("user");
-        location.href = "login.html";
-      }
+        if (result.isConfirmed) {
+            Swal.fire("Has cerrado sesión");
+            localStorage.removeItem("user");
+            location.href = "login.html";
+        }
     });
-  }
-function indexSet(index){
-    localStorage.setItem("nro",index)
 }
-function palClick(pic){
+function indexSet(index) {
+    localStorage.setItem("nro", index)
+}
+function palClick(pic) {
     indexSet(pic);
     Swal.fire({
-        
+        showCloseButton: true,
+        showConfirmButton: false,
         text: 'Imágenes meramente ilustrativas',
         imageUrl: infoData.images[localStorage.getItem("nro")],
         imageWidth: 500,
         imageHeight: 300,
         imageAlt: 'Custom image',
-      })
+    })
 }
 
 
 function showObjInfo() {
     let innerinfo = "";
     let innerinfo2 = "";
-      innerinfo +=`   
-        <div class="list-group-item">
-              <div class="row">
-                  <div class="col">
-                      <div class="d-flex w-100 justify-content-between">
-                          <div class="mb-1">
-                          <h2>${infoData.name}</h2> </br> <hr> <h3>Precio:</h3><h6>${infoData.currency}${infoData.cost}</h6>
+    innerinfo += `   <div class="col">  
+                          <h2>${infoData.name}</h2> </br> <hr size="18px" color="black" /> <h3>Precio:</h3><h6>${infoData.currency}${infoData.cost}</h6>
                           </br>
                           <h3>Descripción:</h3>
                           <p>  ${infoData.description} </p> 
@@ -51,37 +47,49 @@ function showObjInfo() {
                           <p>${infoData.category}</p>
                           </br>
                           <h3>Cantidad de vendidos:</h3>
-                          <p>${infoData.soldCount}</p>
-                          </br>
-                          <h3>Imágenes ilustrativas:</h3>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          `;
-           for (let i = 0; i < infoData.images.length; i++) {
-                   let pic = infoData.images[i];
+                          <p>${infoData.soldCount}</p>    
+                  </div>`;
+    for (let i = 0; i < infoData.images.length; i++) {
+        let pic = infoData.images[i];
 
-                   innerinfo2 += `
+        innerinfo2 += `
                    <div class="col-3" onclick="palClick(${infoData.images.indexOf(pic)})" >
                       <img src="${pic} "  alt="product image" class="img-thumbnail list-group-item-action"></img>
                  </div>
                  `
-                }
+    }
 
-      document.getElementById("infocontainer").innerHTML =
+    document.getElementById("infocontainer").innerHTML =
         innerinfo;
-        document.getElementById("imginfo").innerHTML =
+    document.getElementById("imginfo").innerHTML =
         innerinfo2;
-      
-      }
+
+}
+
+function showObjComments() {
+    let innerComments = "";
+    for (let i = 0; i < commentsData.length; i++) {
+        let com = commentsData[i];
+        innerComments += `<div class="col-7 list-group-item">
+        
+        <h5><b>${com.user}</b> - ${com.dateTime} - <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span></h5>
+        <p>${com.description}</p>
+        
+        </div>`
+    }
+    document.getElementById("comments").innerHTML =
+        innerComments;
+}
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_URL + localStorage.getItem("objID") + EXT_TYPE).then(
         function (resultObj) {
             if (resultObj.status === "ok") {
-                
+
                 infoData = resultObj.data;
                 showObjInfo();
             }
@@ -111,5 +119,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
             });
         }
     );
+
+    getJSONData(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("objID") + EXT_TYPE).then(
+        function (resultObj) {
+            if (resultObj.status === "ok") {
+
+                commentsData = resultObj.data;
+                showObjComments();
+            }
+        })
 
 });

@@ -1,15 +1,3 @@
-// function stars(number){
-// let estrellitas="";
-// for (let i = 1; i<=5; i ++){
-//     if (i<number){
-//         estrellitas += '<span class="fa fa-star checked"></span>';
-//     } else {
-//         estrellitas += '<span class="fa fa-star"></span>'
-//     }
-// }
-
-// document.getElementById('score').innerHTML = estrellitas;
-// }
 
 
 
@@ -108,7 +96,7 @@ function showObjComments() {
         <p>${com.description}</p>
         
         </div>`;
-        // stars(com.score);
+        
     }
     document.getElementById("comments").innerHTML =
         innerComments;
@@ -158,8 +146,22 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 
             }
         })
+        
+                
 
-
+document.getElementById('btncom').addEventListener('click',()=>{
+    let hoy = new Date();
+                let tiempo = hoy.toLocaleTimeString();
+                let fechas = hoy.toLocaleDateString();
+commentsData.push({
+    "product": 50921,
+    "score": document.getElementById('puntaje').value,
+    "description": document.getElementById('newcom').value,
+    "user": localStorage.getItem('user'),
+    "dateTime": fechas+"-"+tiempo
+})
+showObjComments()
+})
 
 
 });

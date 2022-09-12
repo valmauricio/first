@@ -1,3 +1,23 @@
+// function stars(number){
+// let estrellitas="";
+// for (let i = 1; i<=5; i ++){
+//     if (i<number){
+//         estrellitas += '<span class="fa fa-star checked"></span>';
+//     } else {
+//         estrellitas += '<span class="fa fa-star"></span>'
+//     }
+// }
+
+// document.getElementById('score').innerHTML = estrellitas;
+// }
+
+
+
+
+
+
+
+
 function cerrar() {
 
     Swal.fire({
@@ -68,18 +88,27 @@ function showObjInfo() {
 
 function showObjComments() {
     let innerComments = "";
+            
     for (let i = 0; i < commentsData.length; i++) {
         let com = commentsData[i];
+        
+            let estrellitas="";
+            for (let i = 1; i<=5; i ++){
+                if (i<com.score){
+                    estrellitas += '<span class="fa fa-star checked"></span>';
+                } else {
+                    estrellitas += '<span class="fa fa-star"></span>'
+                }
+            }
+            
+        
         innerComments += `<div class="col-7 list-group-item">
         
-        <h5><b>${com.user}</b> - ${com.dateTime} - <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span></h5>
+        <h5><b>${com.user}</b> - ${com.dateTime} - <span>${estrellitas}</span></h5>
         <p>${com.description}</p>
         
-        </div>`
+        </div>`;
+        // stars(com.score);
     }
     document.getElementById("comments").innerHTML =
         innerComments;
@@ -126,7 +155,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
                 commentsData = resultObj.data;
                 showObjComments();
+                
             }
         })
+
+
+
 
 });

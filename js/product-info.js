@@ -1,12 +1,5 @@
-let categoriesArray = [];
-const boton = document.getElementById('boton');
-const buscador = document.getElementById('buscador');
-const lista = document.getElementById('lista');
-
-
 function cerrar() {
-    // alert("Has cerrado sesión");
-
+    
     Swal.fire({
       title: "Seguro que deseas cerrar sesión?",
       text: "perderas el progreso guardado en tu carrito de compras",
@@ -24,18 +17,26 @@ function cerrar() {
       }
     });
   }
-
+function indexSet(index){
+    localStorage.setItem("nro",index)
+}
+function palClick(pic){
+    indexSet(pic);
+    Swal.fire({
+        
+        text: 'Imágenes meramente ilustrativas',
+        imageUrl: infoData.images[localStorage.getItem("nro")],
+        imageWidth: 500,
+        imageHeight: 300,
+        imageAlt: 'Custom image',
+      })
+}
 
 
 function showObjInfo() {
     let innerinfo = "";
     let innerinfo2 = "";
-    
-    // for (let i = 0; i < array.length; i++) {
-    //   let category = array[i];
-      innerinfo +=
-        `
-          
+      innerinfo +=`   
         <div class="list-group-item">
               <div class="row">
                   <div class="col">
@@ -61,9 +62,10 @@ function showObjInfo() {
           `;
            for (let i = 0; i < infoData.images.length; i++) {
                    let pic = infoData.images[i];
+
                    innerinfo2 += `
-                   <div class="col-3">
-                      <img src="${pic} " alt="product image" class="img-thumbnail"></img>
+                   <div class="col-3" onclick="palClick(${infoData.images.indexOf(pic)})" >
+                      <img src="${pic} "  alt="product image" class="img-thumbnail list-group-item-action"></img>
                  </div>
                  `
                 }
@@ -74,11 +76,6 @@ function showObjInfo() {
         innerinfo2;
       
       }
-//   }
-  
-
-
-
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_URL + localStorage.getItem("objID") + EXT_TYPE).then(
@@ -115,8 +112,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     );
 
-
-
-
-    
 });

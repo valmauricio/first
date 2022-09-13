@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 function cerrar() {
 
     Swal.fire({
@@ -154,13 +147,14 @@ document.getElementById('btncom').addEventListener('click',()=>{
                 let tiempo = hoy.toLocaleTimeString();
                 let fechas = hoy.toLocaleDateString();
 commentsData.push({
-    "product": 50921,
-    "score": document.getElementById('puntaje').value,
+    "product": parseInt(localStorage.getItem("objID")),
+    "score": parseInt(document.getElementById('puntaje').value),
     "description": document.getElementById('newcom').value,
     "user": localStorage.getItem('user'),
     "dateTime": fechas+"-"+tiempo
 })
 showObjComments()
+
 })
 
 

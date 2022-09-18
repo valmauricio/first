@@ -95,6 +95,30 @@ function showObjComments() {
         innerComments;
 }
 
+
+
+function goToProd(){
+    localStorage.removeItem("objID")
+    localStorage.setItem("objID", (imgreldata.id))
+    window.location = "product-info.html"
+
+}
+
+
+function showImgRel(producto) {
+   let innerImgRel = "";
+    innerImgRel += `
+               <div class="col-3" onclick="goToProd()">
+                  <img src="${producto.images[0]} "  alt="product image" class="img-thumbnail list-group-item-action"></img>
+             </div>
+             `
+   
+
+
+    document.getElementById("imgrelinfo").innerHTML =
+        innerImgRel;
+}
+
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_URL + localStorage.getItem("objID") + EXT_TYPE).then(
         function (resultObj) {
@@ -102,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
                 infoData = resultObj.data;
                 showObjInfo();
+                
             }
             let usuario = localStorage.getItem("user");
             if (usuario == null) {
@@ -140,6 +165,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
             }
         })
         
+
+        getJSONData(PRODUCT_INFO_URL + (parseInt(localStorage.getItem("objID")) + 1 ) + EXT_TYPE).then(
+            function (resultObj) {
+                if (resultObj.status === "ok") {
+    
+                    imgreldata = resultObj.data;
+                    showImgRel(imgreldata);
+                    
+                } else {
+                    getJSONData(PRODUCT_INFO_URL + (parseInt(localStorage.getItem("objID")) - 1 ) + EXT_TYPE).then(
+                        function (resultObj) {
+                            if (resultObj.status === "ok") {
+                
+                                imgreldata = resultObj.data;
+                                showImgRel(imgreldata);
+                                
+                            }
+                        })
+                }
+            })
+
+
+
+
                 
 
 document.getElementById('btncom').addEventListener('click',()=>{

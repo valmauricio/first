@@ -97,27 +97,41 @@ function showObjComments() {
 
 
 
-function goToProd(){
+function goToProd(foto){
     localStorage.removeItem("objID")
-    localStorage.setItem("objID", (imgreldata.id))
+    localStorage.setItem("objID", (foto))
     window.location = "product-info.html"
 
 }
 
 
 function showImgRel(producto) {
-   let innerImgRel = "";
-    innerImgRel += `
-               <div class="col-3" onclick="goToProd()">
-                  <img src="${producto.images[0]} "  alt="product image" class="img-thumbnail list-group-item-action"></img>
-             </div>
+   
+   document.getElementById("imgrelinfo").innerHTML += `
+               
+                  <img src="${producto.images[0]} " onclick="goToProd(${producto.id})" alt="product image" class="img-thumbnail list-group-item-action"></img>
+             
              `
    
 
 
-    document.getElementById("imgrelinfo").innerHTML =
-        innerImgRel;
+    
+        
 }
+
+function showImgRelB(producto) {
+     
+    document.getElementById("imgrelinfo2").innerHTML += `
+                
+                   <img src="${producto.images[0]} " onclick="goToProd(${producto.id})" alt="product image" class="img-thumbnail list-group-item-action"></img>
+              
+              `
+    
+ 
+ 
+     
+         
+ }
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_URL + localStorage.getItem("objID") + EXT_TYPE).then(
@@ -185,6 +199,31 @@ document.addEventListener("DOMContentLoaded", function (e) {
                         })
                 }
             })
+
+
+
+            getJSONData(PRODUCT_INFO_URL + (parseInt(localStorage.getItem("objID")) - 2 ) + EXT_TYPE).then(
+                function (resultObj) {
+                    if (resultObj.status === "ok") {
+        
+                        imgreldatab = resultObj.data;
+                        showImgRelB(imgreldatab);
+                        
+                        
+                    } else {
+                        getJSONData(PRODUCT_INFO_URL + (parseInt(localStorage.getItem("objID")) + 2 ) + EXT_TYPE).then(
+                            function (resultObj) {
+                                if (resultObj.status === "ok") {
+                    
+                                    imgreldatab = resultObj.data;
+                                    showImgRelB(imgreldatab);
+                                    
+                                    
+                                }
+                            })
+                    }
+                })
+
 
 
 

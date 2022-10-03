@@ -18,6 +18,17 @@ function cerrar() {
     });
 }
 
+function showCartInfo() {
+   let cartissues = ""
+   for (let i = 0; i < cartInfo.length; i++) {
+    let com = cartInfo[i];
+      cartissues += `<h3 class="col-3">${com.name} </h3> <div class="col-3"><img src="${com.image} "  alt="product image" class="img-thumbnail list-group-item-action"></img></div>`
+   }
+    
+    document.getElementById('cartinfo').innerHTML += cartissues
+}
+
+
 document.addEventListener("DOMContentLoaded", function (e) {
 
     let usuario = localStorage.getItem("user");
@@ -45,4 +56,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 cerrar();
             });
 
+
+
+            getJSONData(CART_INFO_URL +25801+ EXT_TYPE).then(
+                function (resultObj) {
+                    if (resultObj.status === "ok") {
+        
+                        cartInfo = resultObj.data.articles;
+                        showCartInfo();
+                        console.log(cartInfo)
+                    }
+                })
+
+            
 })

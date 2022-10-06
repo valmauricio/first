@@ -22,9 +22,17 @@ function showCartInfo() {
    let cartissues = ""
    for (let i = 0; i < cartInfo.length; i++) {
     let com = cartInfo[i];
-      cartissues += `<h3 class="col-3">${com.name} </h3> <div class="col-3"><img src="${com.image} "  alt="product image" class="img-thumbnail list-group-item-action"></img></div>`
-   }
-    
+//       cartissues += `<h3 class="col-3">${com.name} </h3> <div class="col-3"><img src="${com.image} "  alt="product image" class="img-thumbnail list-group-item-action"></img></div>`
+//    }
+cartissues += 
+`<tr>
+<th scope="row"><img src="${com.image}"  alt="image" class="img-fluid" style="max-width: 15%; height: auto;"></img></th>
+<td>${com.name}</td>
+<td>${com.currency +" "+ com.unitCost}</td>
+<td><input type="number" class="form-control"></input></td>
+
+</tr>`
+}
     document.getElementById('cartinfo').innerHTML += cartissues
 }
 

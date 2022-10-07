@@ -19,13 +19,13 @@ function cerrar() {
 }
 
 
-function valor(papaya){
-    cartInfo[i].count = document.getElementById('papaya').innerHTML
+function valor(numb){
+    document.getElementById('fijo2').innerHTML = numb * document.getElementById('fijo').value
 }
 
 function showCartInfo() {
    let cartissues = ""
-   let contentsub = ""
+   
    for (let i = 0; i < cartInfo.length; i++) {
     let com = cartInfo[i];
     
@@ -38,8 +38,8 @@ cartissues +=
 <th scope="row"><img src="${com.image}"  alt="image" class="img-fluid" style="max-width: 15%; height: auto;"></img></th>
 <td>${com.name}</td>
 <td>${com.currency +" "+ com.unitCost}</td>
-<td><input type="number"  class="form-control" value=1 ></input></td>
-<td>${com.unitCost * com.count}</td>
+<td><input id="fijo" type="number"  class="form-control" value=1 onchange="valor(${com.unitCost})"></input></td>
+<td id="fijo2">${com.unitCost * com.count}</td>
 </tr>`
 }
     document.getElementById('cartinfo').innerHTML += cartissues

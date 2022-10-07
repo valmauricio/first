@@ -18,22 +18,36 @@ function cerrar() {
     });
 }
 
+
+function valor(papaya){
+    cartInfo[i].count = document.getElementById('papaya').innerHTML
+}
+
 function showCartInfo() {
    let cartissues = ""
+   let contentsub = ""
    for (let i = 0; i < cartInfo.length; i++) {
     let com = cartInfo[i];
+    
+    
 //       cartissues += `<h3 class="col-3">${com.name} </h3> <div class="col-3"><img src="${com.image} "  alt="product image" class="img-thumbnail list-group-item-action"></img></div>`
 //    }
+
 cartissues += 
 `<tr>
 <th scope="row"><img src="${com.image}"  alt="image" class="img-fluid" style="max-width: 15%; height: auto;"></img></th>
 <td>${com.name}</td>
 <td>${com.currency +" "+ com.unitCost}</td>
-<td><input type="number" class="form-control"></input></td>
-
+<td><input type="number"  class="form-control" value=1 ></input></td>
+<td>${com.unitCost * com.count}</td>
 </tr>`
 }
     document.getElementById('cartinfo').innerHTML += cartissues
+//    document.getElementById('ida').addEventListener("change", () => {
+//     com.count = document.getElementById('ida').value;
+    
+//   });
+    
 }
 
 
@@ -72,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         
                         cartInfo = resultObj.data.articles;
                         showCartInfo();
-                        console.log(cartInfo)
+                        
                     }
                 })
 

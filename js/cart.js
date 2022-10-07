@@ -35,11 +35,11 @@ function showCartInfo() {
 
 cartissues += 
 `<tr>
-<th scope="row"><img src="${com.image}"  alt="image" class="img-fluid" style="max-width: 15%; height: auto;"></img></th>
-<td>${com.name}</td>
-<td>${com.currency +" "+ com.unitCost}</td>
-<td><input id="fijo" type="number"  class="form-control" value=1 onchange="valor(${com.unitCost})"></input></td>
-<td id="fijo2">${com.unitCost * com.count}</td>
+<th scope="row"><img src="${com.image}"  alt="image" class="img-fluid" style="max-width: 50%; height: auto;"></img></th>
+<td class="col-2">${com.name}</td>
+<td class="col-2">${com.currency +" "+ com.unitCost}</td>
+<td class="col-4"><input id="fijo" type="number"  class="form-control" value=1 onchange="valor(${com.unitCost})" style="width: 4em;"></input></td>
+<td class="col-2"><b>${com.currency + " "}<span id="fijo2"> ${com.unitCost * com.count}</span></b></td>
 </tr>`
 }
     document.getElementById('cartinfo').innerHTML += cartissues

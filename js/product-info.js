@@ -38,8 +38,40 @@ function palClick(pic) {
 function showObjInfo() {
     let innerinfo = "";
     let innerinfo2 = "";
-    innerinfo += `   <div class="col">  
-                          <h2>${infoData.name}</h2> </br> <hr size="18px" color="black" /> <h3>Precio:</h3><h6>${infoData.currency}${infoData.cost}</h6>
+    let innerinfo3 = "";
+    let innerinfo4 = "";
+    let innerinfo5 = "";
+    let innerinfo6 = "";
+    let innerinfo7 = "";
+    innerinfo7 += `
+    <img class="d-block w-100" src="${infoData.images[3]}" alt="First slide">
+  
+ `
+    innerinfo6 += `
+    <img class="d-block w-100" src="${infoData.images[2]}" alt="First slide">
+  
+ `
+    innerinfo5 += `
+    <img class="d-block w-100" src="${infoData.images[1]}" alt="First slide">
+  
+ `
+    innerinfo4 += `
+    <img class="d-block w-100" src="${infoData.images[0]}" alt="First slide">
+  
+ `
+    innerinfo3 +=`   <div class="col">  
+    <table class="table"> 
+    <tr>   
+
+    <td class="col-10"><h2>${infoData.name}</h2></td>
+    <td> <button class="btn btn-success" onclick="agregarCarro()">Comprar</button></td>
+    </tr>
+    </table>
+    </br>
+     `
+    innerinfo += `
+    
+     <h3>Precio:</h3><h6>${infoData.currency}${infoData.cost}</h6>
                           </br>
                           <h3>Descripción:</h3>
                           <p>  ${infoData.description} </p> 
@@ -64,6 +96,16 @@ function showObjInfo() {
         innerinfo;
     document.getElementById("imginfo").innerHTML =
         innerinfo2;
+        document.getElementById("infotitle").innerHTML =
+        innerinfo3;
+        document.getElementById("infocarousel").innerHTML =
+        innerinfo4;
+        document.getElementById("infocarousel2").innerHTML =
+        innerinfo5;
+        document.getElementById("infocarousel3").innerHTML =
+        innerinfo6;
+        document.getElementById("infocarousel4").innerHTML =
+        innerinfo7;
 
 }
 

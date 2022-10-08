@@ -33,7 +33,7 @@ function palClick(pic) {
         imageAlt: 'Custom image',
     })
 }
-
+//TESTing
 
 function showObjInfo() {
     let innerinfo = "";

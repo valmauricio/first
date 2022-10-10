@@ -36,7 +36,7 @@ function showCartInfo() {
     }"  alt="image" class="img-fluid" style="max-width: 50%; height: auto;"></img></th>
 <td class="col-2">${com.name}</td>
 <td class="col-2">${com.currency + " " + com.unitCost}</td>
-<td class="col-4"><input id="${[i]}" type="number"  class="form-control" value=1 onchange="valor(${
+<td class="col-4"><input id="${[i]}" type="number"  class="form-control" value=1 min=0 onchange="valor(${
       com.unitCost
     },'${[i]}','${[i]}w')" style="width: 4em;"></input></td>
 <td class="col-2"><b>${com.currency + " "}<span id="${[i]}w"> ${

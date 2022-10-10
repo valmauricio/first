@@ -19,6 +19,13 @@ function cerrar() {
   });
 }
 
+function deleteCart(){
+  localStorage.removeItem('cartArray');
+  cartInfo = [];
+  document.getElementById("cartinfo").innerHTML = ""
+  
+}
+
 function valor(numb,par2,par3) {
   document.getElementById(par3).innerHTML =
     numb * document.getElementById(par2).value;
@@ -82,5 +89,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
       }
       showCartInfo();
     }
+  });
+
+  document.getElementById('deletec').addEventListener("click", () => {
+    deleteCart();
   });
 });

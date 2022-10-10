@@ -34,10 +34,10 @@
            
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="usuario"></span></a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-              <a class="dropdown-item" href="cart.html">Mi carrito</a>
-              <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+              <a class="dropdown-item" href="cart.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Mi carrito</a>
+              <a class="dropdown-item" href="my-profile.html"><i class="fa fa-user" aria-hidden="true"></i> Mi perfil</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#"><button  id="cerrar" style="padding-right: 15px; padding-left: 15px; " class="nav-link btn btn-danger"><i class="fa fa-power-off" aria-hidden="true"></i></button></a>
+              <a id="cerrar" class="dropdown-item" href="#"><i class="fa fa-power-off" aria-hidden="true"></i> Cerrar sesión</a>
             </div>
           </li>
           <!-- <li class="nav-item">
@@ -83,11 +83,10 @@
 
         </tbody>
       </table>
-      <!-- <div class="row" id="cartinfo">
-<ul>
-
-</ul>
-      </div> -->
+    
+    <div style="text-align: right;">
+      <button class="btn" id="deletec"><i class="fa fa-trash" aria-hidden="true"></i> Vaciar carrito</button>
+    </div>
     </div>
 
 

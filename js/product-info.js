@@ -91,8 +91,9 @@ function showObjInfo() {
     <table class="table"> 
     <tr>   
 
-    <td class="col-10"><h2>${infoData.name}</h2></td>
+    <td class="col-9"><h2>${infoData.name}</h2></td>
     <td> <button class="btn btn-success" onclick="agregarCarro(${infoData.cost},'${infoData.currency}','${infoData.name}','${infoData.images[0]}')">Comprar</button></td>
+    <td><a href="cart.html"><i class="fa fa-shopping-cart" aria-hidden="true"> Ver carrito</i><a></td>
     </tr>
     </table>
     </br>

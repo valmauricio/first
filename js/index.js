@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (result.isConfirmed) {
         Swal.fire("Has cerrado sesión");
         localStorage.removeItem("user");
+        localStorage.removeItem("cartArray");
         location.href = "login.html";
       }
     });

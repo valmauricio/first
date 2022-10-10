@@ -14,6 +14,7 @@ function cerrar() {
         if (result.isConfirmed) {
             Swal.fire("Has cerrado sesión");
             localStorage.removeItem("user");
+            localStorage.removeItem("cartArray");
             location.href = "login.html";
         }
     });
@@ -34,8 +35,35 @@ function palClick(pic) {
     })
 }
 //TESTing
+function agregarCarro(cost,cy,name,img){
+    let carro = JSON.parse(localStorage.getItem("cartArray"));
+            if (carro == null) {
+                
+                
+                carro = [];  
 
+
+            } else {
+                
+            }
+    carro.push({
+        "name": name,
+        "count": 1,
+        "unitCost": cost,
+        "currency": cy,
+        "image": img
+    })
+   localStorage.setItem("cartArray",JSON.stringify(carro))
+   Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Agregado al carrito',
+    showConfirmButton: false,
+    timer: 1500
+  })
+}
 function showObjInfo() {
+    
     let innerinfo = "";
     let innerinfo2 = "";
     let innerinfo3 = "";
@@ -64,7 +92,7 @@ function showObjInfo() {
     <tr>   
 
     <td class="col-10"><h2>${infoData.name}</h2></td>
-    <td> <button class="btn btn-success" onclick="agregarCarro()">Comprar</button></td>
+    <td> <button class="btn btn-success" onclick="agregarCarro(${infoData.cost},'${infoData.currency}','${infoData.name}','${infoData.images[0]}')">Comprar</button></td>
     </tr>
     </table>
     </br>
@@ -286,6 +314,11 @@ commentsData.push({
 showObjComments()
 
 })
+
+
+
+
+
 
 
 });

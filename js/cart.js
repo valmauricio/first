@@ -90,6 +90,18 @@ function desabilitar()
 
 }
 
+function subTotal() {
+  const dolares = document.getElementsByClassName('USD')
+  console.log(dolares[0].innerHTML)
+  for (var i = 0; i <  dolares.length; i++) {
+    let com = dolares[i];
+      document.getElementById("productCostTotal") .innerHTML +=  parseInt(com.innerHTML)
+      
+    
+  }
+
+}
+
 function showCartInfo() {
   
   let cartissues = "";
@@ -106,14 +118,16 @@ function showCartInfo() {
 <td class="col-4"><input id="${[i]}" type="number"  class="form-control" value=1 min=0 onchange="valor(${
       com.unitCost
     },'${[i]}','${[i]}w')" style="width: 4em;"></input></td>
-<td class="col-2"><b>${com.currency + " "}<span id="${[i]}w"> ${
+<td class="col-2"><b>${com.currency + " "}<span class="${com.currency}" id="${[i]}w"> ${
       com.unitCost * com.count
     }</span></b></td>
 </tr>`;
-document.getElementById("productCostTotal") .innerHTML +=  parseInt(com.unitCost * com.count)
+
   }
   document.getElementById("cartinfo").innerHTML += cartissues;
-   
+  
+  
+  
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -150,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
       }
       showCartInfo();
+      subTotal()
     }
   });
 

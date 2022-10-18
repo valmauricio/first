@@ -92,10 +92,20 @@ function desabilitar()
 
 function subTotal() {
   const dolares = document.getElementsByClassName('USD')
-  console.log(dolares[0].innerHTML)
-  for (var i = 0; i <  dolares.length; i++) {
-    let com = dolares[i];
-      document.getElementById("productCostTotal") .innerHTML +=  parseInt(com.innerHTML)
+  // console.log(parseInt(dolares[0].innerHTML))
+  let com = 0;
+  for (let i = 0; i <  dolares.length; i++) {
+    console.log(parseInt(dolares[i].innerHTML))
+     com += parseInt(dolares[i].innerHTML);
+
+
+  //   let sum = 0;
+
+  //   for (let i = 0; i < array.length; i++) {
+  //     sum += array[i];
+  // }
+  // console.log(sum);
+      document.getElementById("productCostTotal") .innerHTML =  com
       
     
   }

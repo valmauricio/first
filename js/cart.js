@@ -31,7 +31,67 @@ function valor(numb,par2,par3) {
     numb * document.getElementById(par2).value;
 }
 
+function payMethod() {
+  Swal.fire({
+    title: '<strong>Forma de pago</strong><hr>',
+    
+    html:'<div class="container"><input onchange="desabilitar()" type="radio" id="r1" name="choose" value="Tarjeta de credito">Tarjeta de credito<hr></div>' +
+    '<div class="container row"><div class="col"><label>Numero de tarjeta</label><input id="r10" class="form-control" type="number"><br><label>Vencimiento (MM/AA)<label><input id="r11" class="form-control" type="date"></div><div class="col"><label>Codigo de seguridad</label><input id="r12" style="width: 50%;" class="form-control" type="number"></div></div><br>'+
+    '<hr><div class="container"><input type="radio" onchange="desabilitar()" id="r2" name="choose" value="Transferencia bancaria"> Transferencia bancaria <hr> <label>Numero de cuenta</label><input id="r20" class="form-control r2" type="number"></div><hr>'+
+    '<button class="btn btn-info" id="select">Guardar seleccion</button>',
+    showCloseButton: false,
+    showCancelButton: false,
+    
+    confirmButtonText:
+      'Cerrar',
+    
+   
+  })
+  document.getElementById('select').addEventListener("click", () => {
+    selectPay();
+  });
+
+}
+
+function selectPay() {
+  const radios = document.getElementsByName('choose');
+
+for (var i = 0; i <  radios.length; i++) {
+  if (radios[i].checked) {
+    document.getElementById('selected').innerHTML = radios[i].value
+    break;
+  }
+}
+
+}
+
+function desabilitar()
+{
+    var radio1 = document.getElementById('r1').checked;
+    var inputs = document.getElementById('r20');
+    if (radio1 === true) {
+        inputs.disabled = true;
+    } else if (radio1 === false) {
+        inputs.disabled = false;
+    }
+    var radio2 = document.getElementById('r2').checked;
+    var inputs2 = document.getElementById('r10');
+    var inputs3 = document.getElementById('r11');
+    var inputs4 = document.getElementById('r12');
+    if (radio2 === true) {
+        inputs2.disabled = true;
+        inputs3.disabled = true;
+        inputs4.disabled = true;
+    } else if (radio2 === false) {
+        inputs2.disabled = false;
+        inputs3.disabled = false;
+        inputs4.disabled = false;
+    }
+
+}
+
 function showCartInfo() {
+  
   let cartissues = "";
 
   for (let i = 0; i < cartInfo.length; i++) {
@@ -50,8 +110,10 @@ function showCartInfo() {
       com.unitCost * com.count
     }</span></b></td>
 </tr>`;
+document.getElementById("productCostTotal") .innerHTML +=  parseInt(com.unitCost * com.count)
   }
   document.getElementById("cartinfo").innerHTML += cartissues;
+   
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -94,4 +156,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
   document.getElementById('deletec').addEventListener("click", () => {
     deleteCart();
   });
+  document.getElementById('modal').addEventListener("click", () => {
+    payMethod();
+  });
+  
 });

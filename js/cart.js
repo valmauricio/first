@@ -52,7 +52,19 @@ function payMethod() {
   });
 
 }
-
+function selectEnv(){
+  const radios = document.getElementsByName('radioenv');
+  const sub = document.getElementById('productCostTotal').innerHTML;
+let radioResult= 0;
+for (var i = 0; i <  radios.length; i++) {
+  if (radios[i].checked) {
+    radioResult = radios[i].value
+    console.log(radios[i].value)
+    document.getElementById('comissionText').innerHTML = (parseInt(radios[i].value) * parseInt(sub))/ 100
+    break;
+  }
+}
+}
 function selectPay() {
   const radios = document.getElementsByName('choose');
 
@@ -89,22 +101,23 @@ function desabilitar()
     }
 
 }
-
+function total(){
+  let sub = document.getElementById('productCostTotal').innerHTML
+  let env = document.getElementById('comissionText').innerHTML
+  document.getElementById('totalCostText').innerHTML = parseInt(sub) + parseInt(env)
+}
 function subTotal() {
   const dolares = document.getElementsByClassName('USD')
-  
-  let com = 0;
-  for (let i = 0; i <  dolares.length; i++) {
-    console.log(parseInt(dolares[i].innerHTML))
-     com += parseInt(dolares[i].innerHTML);
-
-
-  
-      document.getElementById("productCostTotal") .innerHTML =  com
-      
-    
+  const pesos = document.getElementsByClassName('UYU')
+  let dol = 0;
+  let pes = 0;
+  for (let i = 0; i <  dolares.length; i++) {   
+     dol += parseInt(dolares[i].innerHTML);
   }
-
+  for (let i = 0; i <  pesos.length; i++) {   
+    pes += parseInt(pesos[i].innerHTML);  
+ }
+ document.getElementById("productCostTotal") .innerHTML =  (pes / 40) + dol
 }
 
 function showCartInfo() {
@@ -122,7 +135,7 @@ function showCartInfo() {
 <td class="col-2">${com.currency + " " + com.unitCost}</td>
 <td class="col-4"><input id="${[i]}" type="number"  class="form-control" value=1 min=0 onchange="valor(${
       com.unitCost
-    },'${[i]}','${[i]}w'), subTotal()" style="width: 4em;"></input></td>
+    },'${[i]}','${[i]}w'), subTotal(), selectEnv(), total()" style="width: 4em;"></input></td>
 <td class="col-2"><b>${com.currency + " "}<span class="${com.currency}" id="${[i]}w"> ${
       com.unitCost * com.count
     }</span></b></td>
@@ -170,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       }
       showCartInfo();
       subTotal()
+      
     }
   });
 

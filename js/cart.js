@@ -92,19 +92,14 @@ function desabilitar()
 
 function subTotal() {
   const dolares = document.getElementsByClassName('USD')
-  // console.log(parseInt(dolares[0].innerHTML))
+  
   let com = 0;
   for (let i = 0; i <  dolares.length; i++) {
     console.log(parseInt(dolares[i].innerHTML))
      com += parseInt(dolares[i].innerHTML);
 
 
-  //   let sum = 0;
-
-  //   for (let i = 0; i < array.length; i++) {
-  //     sum += array[i];
-  // }
-  // console.log(sum);
+  
       document.getElementById("productCostTotal") .innerHTML =  com
       
     
@@ -127,7 +122,7 @@ function showCartInfo() {
 <td class="col-2">${com.currency + " " + com.unitCost}</td>
 <td class="col-4"><input id="${[i]}" type="number"  class="form-control" value=1 min=0 onchange="valor(${
       com.unitCost
-    },'${[i]}','${[i]}w')" style="width: 4em;"></input></td>
+    },'${[i]}','${[i]}w'), subTotal()" style="width: 4em;"></input></td>
 <td class="col-2"><b>${com.currency + " "}<span class="${com.currency}" id="${[i]}w"> ${
       com.unitCost * com.count
     }</span></b></td>

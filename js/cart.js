@@ -129,8 +129,8 @@ function subTotal() {
 
 
 function arrayDeleted(nombre){
-  let deleted1 = cartInfo.filter(item => item.name !== nombre)
-let deleted = deleted1.filter(item => item.name !== 'Peugeot 208')
+  let deleted = cartInfo.filter(item => item.name !== nombre)
+// let deleted = deleted1.filter(item => item.name !== 'Peugeot 208')
   
   localStorage.removeItem('cartArray');
   cartInfo = deleted;

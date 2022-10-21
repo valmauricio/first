@@ -23,6 +23,7 @@ function deleteCart(){
   localStorage.removeItem('cartArray');
   cartInfo = [];
   document.getElementById("cartinfo").innerHTML = ""
+  final()
   
 }
 
@@ -59,8 +60,8 @@ let radioResult= 0;
 for (var i = 0; i <  radios.length; i++) {
   if (radios[i].checked) {
     radioResult = radios[i].value
-    console.log(radios[i].value)
-    document.getElementById('comissionText').innerHTML = (parseInt(radios[i].value) * parseInt(sub))/ 100
+    
+    document.getElementById('comissionText').innerHTML = ((parseFloat(radios[i].value) * parseFloat(sub))/ 100).toFixed(2)
     break;
   }
 }
@@ -102,12 +103,15 @@ function desabilitar()
 
 }
 function final(){
-
+subTotal()
+selectEnv()
+total()
+console.log(JSON.parse(localStorage.getItem("cartArray")))
 }
 function total(){
   let sub = document.getElementById('productCostTotal').innerHTML
   let env = document.getElementById('comissionText').innerHTML
-  document.getElementById('totalCostText').innerHTML = parseInt(sub) + parseInt(env)
+  document.getElementById('totalCostText').innerHTML = (parseFloat(sub) + parseFloat(env)).toFixed(2)
 }
 function subTotal() {
   const dolares = document.getElementsByClassName('USD')
@@ -115,14 +119,28 @@ function subTotal() {
   let dol = 0;
   let pes = 0;
   for (let i = 0; i <  dolares.length; i++) {   
-     dol += parseInt(dolares[i].innerHTML);
+     dol += parseFloat(dolares[i].innerHTML);
   }
   for (let i = 0; i <  pesos.length; i++) {   
-    pes += parseInt(pesos[i].innerHTML);  
+    pes += parseFloat(pesos[i].innerHTML);  
  }
- document.getElementById("productCostTotal") .innerHTML =  (pes / 40) + dol
+ document.getElementById("productCostTotal") .innerHTML = ((pes / 40) + dol).toFixed(2)
 }
 
+
+function arrayDeleted(nombre){
+  let deleted1 = cartInfo.filter(item => item.name !== nombre)
+let deleted = deleted1.filter(item => item.name !== 'Peugeot 208')
+  
+  localStorage.removeItem('cartArray');
+  cartInfo = deleted;
+  localStorage.setItem('cartArray',JSON.stringify(deleted))
+}
+function deleteOne(id){
+  
+     let element = document.getElementById(id);
+     return element.parentNode.removeChild(element);
+   }
 function showCartInfo() {
   
   let cartissues = "";
@@ -130,18 +148,19 @@ function showCartInfo() {
   for (let i = 0; i < cartInfo.length; i++) {
     let com = cartInfo[i];
 
-    cartissues += `<tr>
+    cartissues += `<tr id="${[i]}del">
 <th scope="row"><img src="${
       com.image
     }"  alt="image" class="img-fluid" style="max-width: 50%; height: auto;"></img></th>
 <td class="col-2">${com.name}</td>
 <td class="col-2">${com.currency + " " + com.unitCost}</td>
-<td class="col-4"><input id="${[i]}" type="number"  class="form-control" value=1 min=0 onchange="valor(${
+<td class="col-2"><input id="${[i]}" type="number"  class="form-control" value=1 min=0 onchange="valor(${
       com.unitCost
-    },'${[i]}','${[i]}w'), subTotal(), selectEnv(), total()" style="width: 4em;"></input></td>
+    },'${[i]}','${[i]}w'), subTotal(), selectEnv(), total()" style="width: 5em;"></input></td>
 <td class="col-2"><b>${com.currency + " "}<span class="${com.currency}" id="${[i]}w"> ${
       com.unitCost * com.count
-    }</span></b></td>
+    }</span></b></td><td><button class="btn btn-danger" onclick="deleteOne('${[i]}del'), final(), arrayDeleted('${com.name}')"><i class="fa fa-trash" aria-hidden="true"></i>
+    </button></td>
 </tr>`;
 
   }
@@ -176,19 +195,39 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
   getJSONData(CART_INFO_URL + 25801 + EXT_TYPE).then(function (resultObj) {
-    if (resultObj.status === "ok") {
-      cartInfo = resultObj.data.articles;
-      if (JSON.parse(localStorage.getItem("cartArray")) == null) {
-      } else {
-        JSON.parse(localStorage.getItem("cartArray")).find((object) => {
-          cartInfo.push(object);
-        });
-      }
-      showCartInfo();
-      subTotal()
-      selectEnv()
-      total()
+    if (resultObj.status === "ok" ) {
+      
+      // if 
+      // // (JSON.parse(localStorage.getItem("cartArray")) == null)
+      //  {
+        
+      // } else {
+      //   // JSON.parse(localStorage.getItem("cartArray")).find((object) => {
+      //   //   cartInfo.push(object);
+      //   // });
+      // }
+      
+      
+    
+    if (JSON.parse(localStorage.getItem("cartArray")) == null || JSON.parse(localStorage.getItem("cartArray")).length == 0){
+      cartInfo = resultObj.data.articles
+      console.log(JSON.parse(localStorage.getItem("cartArray")))
+      
+    } else {
+      cartInfo = [];
+      JSON.parse(localStorage.getItem("cartArray")).find((object) => {
+        cartInfo.push(object);
+        
+      });}
+      console.log(JSON.parse(localStorage.getItem("cartArray")))
+
     }
+    showCartInfo();
+    subTotal()
+    selectEnv()
+    total()
+    
+  
   });
 
   document.getElementById('deletec').addEventListener("click", () => {

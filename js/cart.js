@@ -154,7 +154,7 @@ function showCartInfo() {
     }"  alt="image" class="img-fluid" style="max-width: 50%; height: auto;"></img></th>
 <td class="col-2">${com.name}</td>
 <td class="col-2">${com.currency + " " + com.unitCost}</td>
-<td class="col-2"><input id="${[i]}" type="number"  class="form-control" value=1 min=0 onchange="valor(${
+<td class="col-2"><input id="${[i]}" type="number"  class="form-control" value=1 min=1 onchange="valor(${
       com.unitCost
     },'${[i]}','${[i]}w'), subTotal(), selectEnv(), total()" style="width: 5em;"></input></td>
 <td class="col-2"><b>${com.currency + " "}<span class="${com.currency}" id="${[i]}w"> ${

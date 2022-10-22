@@ -9,6 +9,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/validates.css">
 </head>
 
 <body>
@@ -40,10 +41,7 @@
               <a id="cerrar" class="dropdown-item" href="#"><i class="fa fa-power-off" aria-hidden="true"></i> Cerrar sesión</a>
             </div>
           </li>
-          <!-- <li class="nav-item">
-            <button  id="cerrar" style="padding-right: 15px; padding-left: 15px; " class="nav-link btn btn-danger"><i class="fa fa-power-off" aria-hidden="true"></i></button>
-          </li> -->
-          
+         
         </ul>
         
         
@@ -52,13 +50,7 @@
       
         </div>
       </div>
-      <!-- <button style="margin-right: 10px" id="cerrar" class="btn btn-danger btn-sm">Cerrar Sesión</button> -->
-      <!-- <button style="margin-right: 10px;margin-left: 23px;" id="cerrar" class="btn btn-danger btn-sm "><i class="fa fa-power-off" aria-hidden="true"></i>
-
-      </button> -->
-   
-    
-      
+     
     
     </div>
   </nav>
@@ -99,33 +91,39 @@
   <input type="radio" name="radioenv" value="7" onchange="selectEnv(), total()"> <label>Express 5 a 8 días (7%)</label><br>
   <input type="radio" name="radioenv" value="5" checked onchange="selectEnv(), total()"> <label>Standard 12 a 15 días (5%)</label><br>
 <br>
+<form action="">
   <h4>Dirección de envío</h4>
   <br>
   <div class="input-group">
   <table class="table">
   <tr>
     <td>
-      <label>Calle</label><br>
-  <input class="form-control" type="text" style="width: 90%;" required><br>
+      <div>
+        
+        <label>Calle</label><br>
+  <input class="form-control" name="calle" type="text" style="width: 90%;" required>
+  <span></span>
+      </div>
+  <br>
+  <div>
   <label>Esquina</label><br>
-  <input class="form-control" type="text" style="width: 90%;" required>
+  <input class="form-control" name="esquina" type="text" style="width: 90%;" required>
+  <span></span>
+</div>
 </td>
 <td>
+  <div>
   <label>Número</label><br>
-  <input class="form-control" type="text" style="width: 50%;" required>
+  <input class="form-control" name="numero" type="number" style="width: 50%;" required>
+  <span></span>
+  </div>
 </td>
 </tr>
 
 </table>
 
 </div>
-<!--
-  test icon in input
-  <div class="form-group has-feedback">
-  
-  <i class="fa fa-credit-card form-control-feedback" aria-hidden="true"></i>
-  <input type="text" class="form-control" placeholder="Escribe un nombre">
-</div> -->
+
 
 </div>
 
@@ -172,6 +170,7 @@
  <div class="container">
   <button class="btn btn-primary col-12" type="submit">Finalizar compra</button>
  </div>
+</form>
 
   </main>
   <footer class="text-muted">
@@ -192,6 +191,7 @@
       <div></div>
     </div>
   </div>
+  <script src="/js/validates.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>

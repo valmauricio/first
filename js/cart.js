@@ -38,8 +38,8 @@ function payMethod() {
     
     html:'<div class="container"><input onchange="desabilitar()" type="radio" id="r1" name="choose" value="Tarjeta de credito">Tarjeta de credito<hr></div>' +
     '<div class="container row"><div class="col-6"><label>Numero de tarjeta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-credit-card form-control-feedback" aria-hidden="true"></i><input id="r10" class="form-control" type="number"></div><br><label>Vencimiento (MM/AA)<label><input id="r11" class="form-control" type="date"></div><div class="col"><label>Codigo de seguridad</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-lock form-control-feedback" aria-hidden="true"></i><input id="r12" style="width: 50%;" class="form-control" type="number"></div></div></div><br>'+
-    '<hr><div class="container"><input type="radio" onchange="desabilitar()" id="r2" name="choose" value="Transferencia bancaria"> Transferencia bancaria <hr> <label>Numero de cuenta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-id-card form-control-feedback" aria-hidden="true"></i><input id="r20" class="form-control r2" type="number"></div></div><hr>'+
-    '<button class="btn btn-info" id="select">Guardar seleccion</button>',
+    '<hr><div class="container"><input type="radio" onchange="desabilitar()" id="r2" name="choose" value="Transferencia bancaria"> Transferencia bancaria <hr> <label class="form-label" for="r20">Numero de cuenta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-id-card form-control-feedback" aria-hidden="true"></i><input id="r20" class="form-control r2" type="number"></div></div><hr>'+
+    '<button class="btn btn-info" id="select" type="button">Guardar seleccion</button>',
     showCloseButton: false,
     showCancelButton: false,
     
@@ -50,6 +50,7 @@ function payMethod() {
   })
   document.getElementById('select').addEventListener("click", () => {
     selectPay();
+    
   });
 
 }
@@ -211,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     
     if (JSON.parse(localStorage.getItem("cartArray")) == null || JSON.parse(localStorage.getItem("cartArray")).length == 0){
       cartInfo = resultObj.data.articles
-      console.log(JSON.parse(localStorage.getItem("cartArray")))
+      
       
     } else {
       cartInfo = [];
@@ -219,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         cartInfo.push(object);
         
       });}
-      console.log(JSON.parse(localStorage.getItem("cartArray")))
+      
 
     }
     showCartInfo();
@@ -236,5 +237,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   document.getElementById('modal').addEventListener("click", () => {
     payMethod();
   });
+  
   
 });

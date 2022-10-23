@@ -91,7 +91,7 @@
   <input type="radio" name="radioenv" value="7" onchange="selectEnv(), total()"> <label>Express 5 a 8 días (7%)</label><br>
   <input type="radio" name="radioenv" value="5" checked onchange="selectEnv(), total()"> <label>Standard 12 a 15 días (5%)</label><br>
 <br>
-<form action="">
+<form action="Exito.html" class="needs-validation" novalidate>
   <h4>Dirección de envío</h4>
   <br>
   <div class="input-group">
@@ -100,22 +100,22 @@
     <td>
       <div>
         
-        <label>Calle</label><br>
-  <input class="form-control" name="calle" type="text" style="width: 90%;" required>
-  <span></span>
+        <label class="form-label" for="i1">Calle</label><br>
+  <input class="form-control" name="calle" type="text" style="width: 90%;" id="i1" required>
+  <div class="invalid-feedback">Ingresa una calle</div>
       </div>
   <br>
   <div>
-  <label>Esquina</label><br>
-  <input class="form-control" name="esquina" type="text" style="width: 90%;" required>
-  <span></span>
+  <label class="form-label" for="i2">Esquina</label><br>
+  <input class="form-control" name="esquina" type="text" style="width: 90%;" id="i2" required>
+  <div class="invalid-feedback">Ingresa una esquina</div>
 </div>
 </td>
 <td>
   <div>
-  <label>Número</label><br>
-  <input class="form-control" name="numero" type="number" style="width: 50%;" required>
-  <span></span>
+  <label class="form-label" for="i3">Número</label><br>
+  <input class="form-control" name="numero" type="number" style="width: 50%;" id="i3"required>
+  <div class="invalid-feedback">Ingresa un número</div>
   </div>
 </td>
 </tr>
@@ -160,15 +160,15 @@
   <h4 class="mb-3">Forma de pago</h4>
                 <div>
                   <h6 id="selected">No ha seleccionado</h6>
-                  <a id="modal"><button class="btn" style="color: blue;"><u>Seleccionar</u></button></a>
+                  <button id="modal" class="btn" type="button" style="color: blue;"><u>Seleccionar</u></button>
                 </div>
-                
+                <div class="invalid-feedback">Ingresa una forma de pago</div>
           </div>
   
 <!-- end2 -->
 <br>
  <div class="container">
-  <button class="btn btn-primary col-12" type="submit">Finalizar compra</button>
+  <button class="btn btn-primary col-12" type="submit" id="finalbutton">Finalizar compra</button>
  </div>
 </form>
 

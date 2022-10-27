@@ -21,7 +21,7 @@ const radioH2 = document.getElementById('r2');
 
 
 if (!radioH1.checked && !radioH2.checked) {
-  document.getElementById('but').innerHTML = 'No ha seleccionado'
+  document.getElementById('but').innerHTML = 'Debe seleccionar una forma de pago'
   
   
  
@@ -288,7 +288,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
   // }); ESTO ERA CON SWEET ALERT
   document.getElementById('select').addEventListener("click", () => {
     selectPay();
-    
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Datos almacenados',
+      showConfirmButton: false,
+      timer: 1500
+    })
   });
   
 });

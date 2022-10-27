@@ -1,5 +1,5 @@
-const radio1 = document.getElementById('r1');
-const radio2 = document.getElementById('r2');
+// const radio1 = document.getElementById('r1');
+// const radio2 = document.getElementById('r2');
 // const streetField = document.querySelector("[name=calle]");
 // const numbField = document.querySelector("[name=numero]");
 // const cornerField = document.querySelector("[name=esquina]");
@@ -59,38 +59,38 @@ const radio2 = document.getElementById('r2');
 // ;
 
 // Ejemplo de JavaScript inicial para deshabilitar el envío de formularios si hay campos no válidos
-(function () {
-    'use strict'
+// (function () {
+//     'use strict'
   
-    // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
-    var forms = document.querySelectorAll('.needs-validation')
+//     // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+//     var forms = document.querySelectorAll('.needs-validation')
   
-    // Bucle sobre ellos y evitar el envío
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
+//     // Bucle sobre ellos y evitar el envío
+//     Array.prototype.slice.call(forms)
+//       .forEach(function (form) {
+//         form.addEventListener('submit', function (event) {
+//           if (!form.checkValidity()) {
+//             event.preventDefault()
+//             event.stopPropagation()
+//           }
   
-          form.classList.add('was-validated')
+//           form.classList.add('was-validated')
           
 
 
-  if (!radio1.checked && !radio2.checked) {
-    document.getElementById('but').innerHTML = 'No ha seleccionado'
+//   if (!radio1.checked && !radio2.checked) {
+//     document.getElementById('but').innerHTML = 'No ha seleccionado'
     
     
    
-  }
+//   }
   
 
 
           
-        }, false)
-      })
-  })()
+//         }, false)
+//       })
+//   })()
   
 
   

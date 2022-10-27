@@ -1,3 +1,5 @@
+const radio1 = document.getElementById('r1');
+const radio2 = document.getElementById('r2');
 // const streetField = document.querySelector("[name=calle]");
 // const numbField = document.querySelector("[name=numero]");
 // const cornerField = document.querySelector("[name=esquina]");
@@ -73,6 +75,19 @@
           }
   
           form.classList.add('was-validated')
+          
+
+
+  if (!radio1.checked && !radio2.checked) {
+    document.getElementById('but').innerHTML = 'No ha seleccionado'
+    
+    
+   
+  }
+  
+
+
+          
         }, false)
       })
   })()

@@ -160,11 +160,79 @@
   <h4 class="mb-3">Forma de pago</h4>
                 <div>
                   <h6 id="selected">No ha seleccionado</h6>
-                  <button id="modal" class="btn" type="button" style="color: blue;"><u>Seleccionar</u></button>
+                  <!-- <button id="modal" class="btn" type="button" style="color: blue;"><u>Seleccionar</u></button> esto era
+                  con sweet alert--> 
                 </div>
-                <div class="invalid-feedback">Ingresa una forma de pago</div>
+                
+          
+
+          <div class="col-sm-12 input-control">
+            <button  type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+              data-bs-target="#modalTerminos">Seleccionar</button>
+              <div id="but" class="error"></div>
+              
           </div>
-  
+
+          <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Formas de pago.</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <input onchange="desabilitar(), selectPay()" type="radio" id="r1" name="choose" value="Tarjeta de credito" required>
+                    Tarjeta de credito
+                    <hr>
+                  </div>
+                  <div class="container row">
+                    <div class="col-6">
+                      <label>Numero de tarjeta</label>
+                      <div class="form-group has-feedback" style="text-align: left;">
+                        <i class="fa fa-credit-card form-control-feedback" aria-hidden="true"></i>
+                        <input id="r10" class="form-control" type="number" required minlength="14" >
+                      </div>
+                      <br>
+                      <label>Vencimiento (MM/AA)<label>
+                        <input id="r11" class="form-control" type="month" required minlength="4" >
+                      </div>
+                      <div class="col">
+                        <label>Codigo de seguridad</label>
+                        <div class="form-group has-feedback" style="text-align: left;">
+                          <i class="fa fa-lock form-control-feedback" aria-hidden="true"></i>
+                          <input id="r12" style="width: 50%;" class="form-control" type="number" minlength="3" required >
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="container">
+                      <input type="radio" onchange="desabilitar(), selectPay()" id="r2" name="choose" value="Transferencia bancaria" required>
+                       Transferencia bancaria 
+                       <hr> 
+                       <label class="form-label" for="r20">Numero de cuenta</label>
+                       <div class="form-group has-feedback" style="text-align: left;">
+                        <i class="fa fa-id-card form-control-feedback" aria-hidden="true"></i>
+                        <input id="r20" class="form-control r2" type="number" required minlength="4">
+                      </div>
+                    </div>
+                    <hr>
+                    <button class="btn btn-info" id="select" type="button">Guardar seleccion</button>
+                
+                  </div>
+                <!-- <div class="modal-footer">
+                  <div class="input-control">
+                    <input type="checkbox" class="form-check-input" id="terms" value=""   required>
+                    <label class="form-check-label" for="terms">Acepto los términos y condiciones del servicio.</label>
+                    <div class="error"></div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+
+        </div>
 <!-- end2 -->
 <br>
  <div class="container">

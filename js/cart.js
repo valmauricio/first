@@ -32,28 +32,28 @@ function valor(numb,par2,par3) {
     numb * document.getElementById(par2).value;
 }
 
-function payMethod() {
-  Swal.fire({
-    title: '<strong>Forma de pago</strong><hr>',
+// function payMethod() {
+//   Swal.fire({
+//     title: '<strong>Forma de pago</strong><hr>',
     
-    html:'<div class="container"><input onchange="desabilitar()" type="radio" id="r1" name="choose" value="Tarjeta de credito">Tarjeta de credito<hr></div>' +
-    '<div class="container row"><div class="col-6"><label>Numero de tarjeta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-credit-card form-control-feedback" aria-hidden="true"></i><input id="r10" class="form-control" type="number"></div><br><label>Vencimiento (MM/AA)<label><input id="r11" class="form-control" type="date"></div><div class="col"><label>Codigo de seguridad</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-lock form-control-feedback" aria-hidden="true"></i><input id="r12" style="width: 50%;" class="form-control" type="number"></div></div></div><br>'+
-    '<hr><div class="container"><input type="radio" onchange="desabilitar()" id="r2" name="choose" value="Transferencia bancaria"> Transferencia bancaria <hr> <label class="form-label" for="r20">Numero de cuenta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-id-card form-control-feedback" aria-hidden="true"></i><input id="r20" class="form-control r2" type="number"></div></div><hr>'+
-    '<button class="btn btn-info" id="select" type="button">Guardar seleccion</button>',
-    showCloseButton: false,
-    showCancelButton: false,
+//     html:'<div class="container"><input onchange="desabilitar()" type="radio" id="r1" name="choose" value="Tarjeta de credito">Tarjeta de credito<hr></div>' +
+//     '<div class="container row"><div class="col-6"><label>Numero de tarjeta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-credit-card form-control-feedback" aria-hidden="true"></i><input id="r10" class="form-control" type="number"></div><br><label>Vencimiento (MM/AA)<label><input id="r11" class="form-control" type="date"></div><div class="col"><label>Codigo de seguridad</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-lock form-control-feedback" aria-hidden="true"></i><input id="r12" style="width: 50%;" class="form-control" type="number"></div></div></div><br>'+
+//     '<hr><div class="container"><input type="radio" onchange="desabilitar()" id="r2" name="choose" value="Transferencia bancaria"> Transferencia bancaria <hr> <label class="form-label" for="r20">Numero de cuenta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-id-card form-control-feedback" aria-hidden="true"></i><input id="r20" class="form-control r2" type="number"></div></div><hr>'+
+//     '<button class="btn btn-info" id="select" type="button">Guardar seleccion</button>',
+//     showCloseButton: false,
+//     showCancelButton: false,
     
-    confirmButtonText:
-      'Cerrar',
+//     confirmButtonText:
+//       'Cerrar',
     
    
-  })
-  document.getElementById('select').addEventListener("click", () => {
-    selectPay();
+//   })
+//   document.getElementById('select').addEventListener("click", () => {
+//     selectPay();
     
-  });
+//   });
 
-}
+// } ESTO ERA CON SWEET ALERT
 function selectEnv(){
   const radios = document.getElementsByName('radioenv');
   const sub = document.getElementById('productCostTotal').innerHTML;
@@ -73,10 +73,13 @@ function selectPay() {
 for (var i = 0; i <  radios.length; i++) {
   if (radios[i].checked) {
     document.getElementById('selected').innerHTML = radios[i].value
+    
     break;
+   
   }
+  
 }
-
+document.getElementById('but').innerHTML = ''
 }
 
 function desabilitar()
@@ -84,7 +87,9 @@ function desabilitar()
     var radio1 = document.getElementById('r1').checked;
     var inputs = document.getElementById('r20');
     if (radio1 === true) {
+      inputs.value = ''
         inputs.disabled = true;
+        
     } else if (radio1 === false) {
         inputs.disabled = false;
     }
@@ -93,9 +98,13 @@ function desabilitar()
     var inputs3 = document.getElementById('r11');
     var inputs4 = document.getElementById('r12');
     if (radio2 === true) {
+      inputs2.value = ''
         inputs2.disabled = true;
+        inputs3.value = ''
         inputs3.disabled = true;
+        inputs4.value = ''
         inputs4.disabled = true;
+        
     } else if (radio2 === false) {
         inputs2.disabled = false;
         inputs3.disabled = false;
@@ -227,16 +236,20 @@ document.addEventListener("DOMContentLoaded", function (e) {
     subTotal()
     selectEnv()
     total()
-    
+    selectPay();
+    desabilitar()
   
   });
 
   document.getElementById('deletec').addEventListener("click", () => {
     deleteCart();
   });
-  document.getElementById('modal').addEventListener("click", () => {
-    payMethod();
+  // document.getElementById('modal').addEventListener("click", () => {
+  //   payMethod();
+  // }); ESTO ERA CON SWEET ALERT
+  document.getElementById('select').addEventListener("click", () => {
+    selectPay();
+    
   });
-  
   
 });

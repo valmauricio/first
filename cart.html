@@ -78,6 +78,8 @@
     
     <div style="text-align: right;">
       <button class="btn" id="deletec"><i class="fa fa-trash" aria-hidden="true"></i> Vaciar carrito</button>
+      
+    
     </div>
     </div>
 
@@ -91,7 +93,7 @@
   <input type="radio" name="radioenv" value="7" onchange="selectEnv(), total()"> <label>Express 5 a 8 días (7%)</label><br>
   <input type="radio" name="radioenv" value="5" checked onchange="selectEnv(), total()"> <label>Standard 12 a 15 días (5%)</label><br>
 <br>
-<form action="Exito.html" class="needs-validation" novalidate>
+<form action="Exito.html" class="needs-validation" autocomplete="off" novalidate >
   <h4>Dirección de envío</h4>
   <br>
   <div class="input-group">
@@ -113,10 +115,12 @@
 </td>
 <td>
   <div>
+    
   <label class="form-label" for="i3">Número</label><br>
-  <input class="form-control" name="numero" type="number" style="width: 50%;" id="i3"required>
+  <input class="form-control" name="numero" type="text" min="0" autocomplete="off" style="width: 50%;" id="i3"required >
   <div class="invalid-feedback">Ingresa un número</div>
   </div>
+
 </td>
 </tr>
 

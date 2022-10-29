@@ -1,5 +1,6 @@
 const radioH1 = document.getElementById('r1');
 const radioH2 = document.getElementById('r2');
+const inputZero = document.getElementsByName('zero');
 
 (function () {
   'use strict'
@@ -25,16 +26,20 @@ if (!radioH1.checked && !radioH2.checked) {
   
   
  
-}
-
-
-
-        
+}     
       }, false)
     })
 })()
 
-
+function Zero() {
+  for (let i = 0; i < inputZero.length; i++) {
+    let input = inputZero[i];
+  if ((input.value == 0)) {
+    input.value = 1; 
+  } 
+  } 
+  
+}
 
 
 function cerrar() {
@@ -203,9 +208,11 @@ function showCartInfo() {
     }"  alt="image" class="img-fluid" style="max-width: 50%; height: auto;"></img></th>
 <td class="col-2">${com.name}</td>
 <td class="col-2">${com.currency + " " + com.unitCost}</td>
-<td class="col-2"><input id="${[i]}" type="number"  class="form-control" value=1 min=1 onchange="valor(${
+<td class="col-2"><input id="${[i]}" type="number"  class="form-control" name="zero" value=1 min=1 onkeyup="Zero(), valor(${
+  com.unitCost
+},'${[i]}','${[i]}w')" onchange="valor(${
       com.unitCost
-    },'${[i]}','${[i]}w'), subTotal(), selectEnv(), total()" style="width: 5em;"></input></td>
+    },'${[i]}','${[i]}w'), subTotal(), selectEnv(), total()" style="width: 5em;" required></input></td>
 <td class="col-2"><b>${com.currency + " "}<span class="${com.currency}" id="${[i]}w"> ${
       com.unitCost * com.count
     }</span></b></td><td><button class="btn btn-danger" onclick="deleteOne('${[i]}del'), final(), arrayDeleted('${com.name}')"><i class="fa fa-trash" aria-hidden="true"></i>

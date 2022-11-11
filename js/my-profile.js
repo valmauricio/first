@@ -1,3 +1,6 @@
+let perfil = []
+
+
 function cerrar() {
 
     Swal.fire({
@@ -19,6 +22,59 @@ function cerrar() {
     });
 }
 
+function addPerf(){
+let name = document.getElementById('name1').value;
+let surname = document.getElementById('surname1').value;
+let email = document.getElementById('email1').value;
+let name2 = document.getElementById('name2').value;
+let surname2 = document.getElementById('surname2').value;
+let tel = document.getElementById('tel1').value;
+
+
+    perfil.push({
+        "name": name,
+        "surname": surname,
+        "email": email,
+        "name2": name2,
+        "surname2": surname2,
+        "tel": tel
+    })
+}
+
+(function () {
+    "use strict";
+  
+    // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+    var forms = document.querySelectorAll(".needs-validation");
+  
+    // Bucle sobre ellos y evitar el envío
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            
+            event.stopPropagation();
+             
+          } else {
+            perfil = [];
+            addPerf();
+            
+            localStorage.setItem(`${usuario.innerHTML}`,JSON.stringify(perfil));
+              
+          
+          }
+  
+          form.classList.add("was-validated");
+  
+          
+        },
+        false,
+        
+      );
+    });
+  })();
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
@@ -41,10 +97,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             } else {
                 document.getElementById("usuario").innerHTML = usuario;
+                document.getElementById("email1").value = usuario;
             }
 
             document.getElementById("cerrar").addEventListener("click", () => {
                 cerrar();
             });
+
+let savedPerf = localStorage.getItem(`${usuario}`);
+            if (savedPerf !== null) {
+                perfil = JSON.parse(localStorage.getItem(`${usuario}`))
+                console.log(perfil[0].name)
+
+                document.getElementById('name1').value = perfil[0].name
+document.getElementById('surname1').value =perfil[0].surname
+document.getElementById('email1').value = perfil[0].email
+document.getElementById('name2').value = perfil[0].name2
+document.getElementById('surname2').value = perfil[0].surname2
+document.getElementById('tel1').value = perfil[0].tel
+
+
+   
+
+            } else {
+                console.log('no existe perfil guardado')
+            }
 
 })

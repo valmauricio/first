@@ -2,7 +2,7 @@ const radioH1 = document.getElementById("r1");
 const radioH2 = document.getElementById("r2");
 const inputZero = document.getElementsByName("zero");
 
-
+//Validación de formulario
 (function () {
   "use strict";
 
@@ -31,7 +31,7 @@ const inputZero = document.getElementsByName("zero");
     );
   });
 })();
-
+//La cantidad nunca puede ser 0
 function Zero() {
   for (let i = 0; i < inputZero.length; i++) {
     let input = inputZero[i];
@@ -40,7 +40,7 @@ function Zero() {
     }
   }
 }
-
+//Función que se utiliza para cerrar sesión
 function cerrar() {
   Swal.fire({
     title: "Seguro que deseas cerrar sesión?",
@@ -60,41 +60,23 @@ function cerrar() {
     }
   });
 }
-
+//Eliminar carrito completo
 function deleteCart() {
   localStorage.removeItem("cartArray");
   cartInfo = [];
   document.getElementById("cartinfo").innerHTML = "";
   final();
 }
-
+//Calcular precio por cantidad
 function valor(numb, par2, par3) {
   document.getElementById(par3).innerHTML =
     numb * document.getElementById(par2).value;
 }
 
-// function payMethod() {
-//   Swal.fire({
-//     title: '<strong>Forma de pago</strong><hr>',
 
-//     html:'<div class="container"><input onchange="desabilitar()" type="radio" id="r1" name="choose" value="Tarjeta de credito">Tarjeta de credito<hr></div>' +
-//     '<div class="container row"><div class="col-6"><label>Numero de tarjeta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-credit-card form-control-feedback" aria-hidden="true"></i><input id="r10" class="form-control" type="number"></div><br><label>Vencimiento (MM/AA)<label><input id="r11" class="form-control" type="date"></div><div class="col"><label>Codigo de seguridad</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-lock form-control-feedback" aria-hidden="true"></i><input id="r12" style="width: 50%;" class="form-control" type="number"></div></div></div><br>'+
-//     '<hr><div class="container"><input type="radio" onchange="desabilitar()" id="r2" name="choose" value="Transferencia bancaria"> Transferencia bancaria <hr> <label class="form-label" for="r20">Numero de cuenta</label><div class="form-group has-feedback" style="text-align: left;"><i class="fa fa-id-card form-control-feedback" aria-hidden="true"></i><input id="r20" class="form-control r2" type="number"></div></div><hr>'+
-//     '<button class="btn btn-info" id="select" type="button">Guardar seleccion</button>',
-//     showCloseButton: false,
-//     showCancelButton: false,
 
-//     confirmButtonText:
-//       'Cerrar',
 
-//   })
-//   document.getElementById('select').addEventListener("click", () => {
-//     selectPay();
-
-//   });
-
-// } ESTO ERA CON SWEET ALERT
-
+//Elegir método de pago
 function selectPay() {
   const radios = document.getElementsByName("choose");
 
@@ -114,8 +96,7 @@ function final() {
   selectEnv();
   total();
 }
-// PAUTA 1/6
-// -----------------------------------------------------------------------------------------------------------------------------------
+// Calculo el subtotal sin el costo de envio
 function subTotal() {
   const dolares = document.getElementsByClassName("USD");
   const pesos = document.getElementsByClassName("UYU");
@@ -132,6 +113,7 @@ function subTotal() {
     dol
   ).toFixed(2);
 }
+//Calculo el costo de envío
 function selectEnv() {
   const radios = document.getElementsByName("radioenv");
   const sub = document.getElementById("productCostTotal").innerHTML;
@@ -148,6 +130,7 @@ function selectEnv() {
     }
   }
 }
+//Calculo el subtotal con el costo de envío
 function total() {
   let sub = document.getElementById("productCostTotal").innerHTML;
   let env = document.getElementById("comissionText").innerHTML;
@@ -155,8 +138,7 @@ function total() {
     parseFloat(sub) + parseFloat(env)
   ).toFixed(2);
 }
-// --------------------------------------------------------------------------------------------------------------------------
-// PAUTA 2/6
+//Función para deshabilitar el input que no se usa
 function desabilitar() {
   var radio1 = document.getElementById("r1").checked;
   var inputs = document.getElementById("r20");
@@ -183,7 +165,7 @@ function desabilitar() {
     inputs4.disabled = false;
   }
 }
-// -----------------------------------------------------------------------------------------------------------------
+//Eliminar un producto de la lista
 function arrayDeleted(nombre) {
   let deleted = cartInfo.filter((item) => item.name !== nombre);
   
@@ -196,6 +178,7 @@ function deleteOne(id) {
   let element = document.getElementById(id);
   return element.parentNode.removeChild(element);
 }
+//Mostrar lista de productos a comprar
 function showCartInfo() {
   let cartissues = "";
 
@@ -222,6 +205,7 @@ function showCartInfo() {
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  //Verificación de logueo
   let usuario = localStorage.getItem("user");
   if (usuario == null) {
     Swal.fire({
@@ -252,8 +236,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
         JSON.parse(localStorage.getItem("cartArray")) == null ||
         JSON.parse(localStorage.getItem("cartArray")).length == 0
       ) {
+        //Si el carrito está vaciío , cargo el peugeot del json
         cartInfo = resultObj.data.articles;
       } else {
+        //Sino, cargo los productos de mi carrito
         cartInfo = [];
         JSON.parse(localStorage.getItem("cartArray")).find((object) => {
           cartInfo.push(object);
@@ -271,9 +257,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   document.getElementById("deletec").addEventListener("click", () => {
     deleteCart();
   });
-  // document.getElementById('modal').addEventListener("click", () => {
-  //   payMethod();
-  // }); ESTO ERA CON SWEET ALERT
+  
   document.getElementById("select").addEventListener("click", () => {
     selectPay();
     

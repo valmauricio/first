@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         categoriesArray = resultObj.data.products;
         showCategoriesList(categoriesArray);
       }
+      // Verificación de logueo
       let usuario = localStorage.getItem("user");
       if (usuario == null) {
         Swal.fire({
@@ -92,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
           }
         });
 
-        //alert("Es necesario autenticarse para ver la página");
+        
       } else {
         document.getElementById("usuario").innerHTML = usuario;
       }
@@ -106,9 +107,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
   
-
+//Función que se utiliza para cerrar sesión
   function cerrar() {
-    // alert("Has cerrado sesión");
+    
 
     Swal.fire({
       title: "Seguro que deseas cerrar sesión?",
@@ -139,10 +140,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let listaFiltrada = categoriesArray.filter(
       (miArr) => miArr.cost > inicial && miArr.cost < final
     );
-    //   // arr.sort((a,b)=>a-b)
-    //  ¿ listaFiltrada.sort((ant,sig)=>ant.cost-sig.cost);
+    
     showCategoriesList(listaFiltrada);
-    // console.log(listaFiltrada);
+    
   }
 
   document.getElementById("rangeFilterCount").addEventListener("click", () => {
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   
 const buscar = ()=>{
-  // console.log(buscador.value);
+  
   htmlContentToAppend = '';
   
   
@@ -232,7 +232,7 @@ const buscar = ()=>{
   }
   if(htmlContentToAppend === ""){
     
-      // alert("no"); 
+      
       Swal.fire({
         text: "Lo sentimos, no contamos con el producto que estás buscando",
         icon: "warning",

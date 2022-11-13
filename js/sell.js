@@ -29,9 +29,9 @@ function updateTotalCosts(){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 
-
+//Función que se utiliza para cerrar sesión
     function cerrar() {
-        // alert("Has cerrado sesión");
+        
     
         Swal.fire({
           title: "Seguro que deseas cerrar sesión?",
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function(e){
           }
         });
     
-        //alert("Es necesario autenticarse para ver la página");
+        
       } else {
         document.getElementById("usuario").innerHTML = usuario;
       }

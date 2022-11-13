@@ -10,7 +10,7 @@ let maxCount = undefined;
 
 
 
-
+// Ordenar
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -44,7 +44,7 @@ function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
 }
-
+//Mostrar información de la categoría
 function showCategoriesList(){
 
     let htmlContentToAppend = "";

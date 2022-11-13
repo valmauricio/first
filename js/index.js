@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  //Función que se utiliza para cerrar sesión
   function cerrar() {
     
 
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("catID", 103);
     window.location = "products.html";
   });
+  //Verificación de logueo
   let usuario = localStorage.getItem("user");
   if (usuario == null) {
     Swal.fire({

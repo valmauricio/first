@@ -1,9 +1,10 @@
 
+  // Expresión regular para email
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
  
 
 
-
+//Validación de ingreso
 function login() {
     let usuario = document.getElementById('nombre').value;
     let clave = document.getElementById('clave').value;
@@ -12,7 +13,7 @@ function login() {
     localStorage.setItem('user',usuario);
     location.href = "index.html";
     } else {
-       // alert("Usuario y clave son requeridos");
+      
        Swal.fire({
         icon: 'error',
         text: 'Usuario y Contraseña son requeridos',

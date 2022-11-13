@@ -1,6 +1,6 @@
 let perfil = []
 
-
+//Función que se utiliza para cerrar sesión
 function cerrar() {
 
     Swal.fire({
@@ -21,7 +21,7 @@ function cerrar() {
         }
     });
 }
-
+//Función para agregar los datos del usuario
 function addPerf(){
 let name = document.getElementById('name1').value;
 let surname = document.getElementById('surname1').value;
@@ -60,7 +60,7 @@ let tel = document.getElementById('tel1').value;
           } else {
             perfil = [];
             addPerf();
-            
+            //Guardo todo en localstorage con el nombre de usuario en la key para futuros inicios de sesión
             localStorage.setItem(`${usuario.innerHTML}`,JSON.stringify(perfil));
               
           
@@ -77,7 +77,7 @@ let tel = document.getElementById('tel1').value;
   })();
 
 document.addEventListener("DOMContentLoaded", function (e) {
-
+//Verificación de logueo
     let usuario = localStorage.getItem("user");
             if (usuario == null) {
                 Swal.fire({
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             document.getElementById("cerrar").addEventListener("click", () => {
                 cerrar();
             });
-
+//Carga los datos del usuario al inicio de la página
 let savedPerf = localStorage.getItem(`${usuario}`);
             if (savedPerf !== null) {
                 perfil = JSON.parse(localStorage.getItem(`${usuario}`))

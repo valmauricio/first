@@ -1,4 +1,4 @@
-
+//Función que se utiliza para cerrar sesión
 function cerrar() {
 
     Swal.fire({
@@ -34,7 +34,7 @@ function palClick(pic) {
         imageAlt: 'Custom image',
     })
 }
-//TESTing
+// Agregar producto al carrito
 function agregarCarro(cost,cy,name,img){
     let carro = JSON.parse(localStorage.getItem("cartArray"));
             if (carro == null) {
@@ -62,6 +62,7 @@ function agregarCarro(cost,cy,name,img){
     timer: 1500
   })
 }
+//Mostrar la información del producto
 function showObjInfo() {
     
     let innerinfo = "";
@@ -175,7 +176,7 @@ function goToProd(foto){
 
 }
 
-
+// Mostrar imagen relacionada 1
 function showImgRel(producto) {
    
    document.getElementById("imgrelinfo").innerHTML += `
@@ -189,7 +190,7 @@ function showImgRel(producto) {
     
         
 }
-
+// Mostrar imagen relacionada 2
 function showImgRelB(producto) {
      
     document.getElementById("imgrelinfo2").innerHTML += `
@@ -213,6 +214,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 showObjInfo();
                 
             }
+            //Verificación de logueo
             let usuario = localStorage.getItem("user");
             if (usuario == null) {
                 Swal.fire({
@@ -249,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 
             }
         })
-        
+        // Elaboración de productos relacionados
 
         getJSONData(PRODUCT_INFO_URL + (parseInt(localStorage.getItem("objID")) + 1 ) + EXT_TYPE).then(
             function (resultObj) {
@@ -300,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
                 
-
+//Agregar comentario
 document.getElementById('btncom').addEventListener('click',()=>{
     let hoy = new Date();
                 let tiempo = hoy.toLocaleTimeString();

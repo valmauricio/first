@@ -171,7 +171,7 @@ let savedPic = localStorage.getItem(`pic${usuario}`)
 if (savedPic !== null){
     document.getElementById('imgps').src = savedPic
 } else {
-    document.getElementById('imgps').src = "/img/imgperfil.png"
+    document.getElementById('imgps').src = "./img/imgperfil.png"
 }
 
 

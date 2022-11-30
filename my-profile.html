@@ -85,8 +85,10 @@
       <br>
       <br>
       <br>
-
-      <h4>Perfil</h4>
+<div class="container row" style="justify-content: space-between;">
+      <h4 class="col-6">Perfil</h4>
+      <img class="col-6" src="" style="width: 15%;" alt="" id="imgps">
+    </div>
   <br>
   <hr>
   <div class="input-group">
@@ -130,6 +132,12 @@
   <input class="form-control" name="tel1" type="text" style="width: 100%;" id="tel1">
   <div class="invalid-feedback">Ingresa un teléfono</div>
 </div>
+<br>
+<div>
+  <label class="form-label" for="imgp">Imagen de perfil</label><br>
+  <input class="form-control" name="imgp" type="file" style="width: 100%;" id="imgp">
+  <div class="invalid-feedback">Selecciona una imagen</div>
+</div>
 </td>
 </tr>
 <br>
@@ -142,6 +150,7 @@
 </div>
 <br>
 <button class="btn btn-primary col-2" type="submit" id="saveprofile">Guardar cambios</button>
+
 <br>
 <br>
 <hr>

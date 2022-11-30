@@ -1,5 +1,13 @@
 let perfil = []
 
+
+  
+  
+
+
+
+
+
 //Función que se utiliza para cerrar sesión
 function cerrar() {
 
@@ -23,22 +31,56 @@ function cerrar() {
 }
 //Función para agregar los datos del usuario
 function addPerf(){
-let name = document.getElementById('name1').value;
-let surname = document.getElementById('surname1').value;
-let email = document.getElementById('email1').value;
-let name2 = document.getElementById('name2').value;
-let surname2 = document.getElementById('surname2').value;
-let tel = document.getElementById('tel1').value;
+
+    let name = document.getElementById('name1').value;
+    let surname = document.getElementById('surname1').value;
+    let email = document.getElementById('email1').value;
+    let name2 = document.getElementById('name2').value;
+    let surname2 = document.getElementById('surname2').value;
+    let tel = document.getElementById('tel1').value;
+    
+    
+    
+        perfil.push({
+            "name": name,
+            "surname": surname,
+            "email": email,
+            "name2": name2,
+            "surname2": surname2,
+            "tel": tel
+            
+            
+        })
 
 
-    perfil.push({
-        "name": name,
-        "surname": surname,
-        "email": email,
-        "name2": name2,
-        "surname2": surname2,
-        "tel": tel
-    })
+// imagen
+    const preview = document.getElementById('imgps');
+    const file = document.getElementById('imgp').files[0];
+    const reader = new FileReader();
+  
+    reader.addEventListener("load", function () {
+      // convierte la imagen a una cadena en base64
+      preview.src = reader.result;
+    }, false);
+  
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+    //Cuando esta en fase 2 le consulto por el resultado
+    reader.onloadend = () => {
+        
+         if (localStorage.getItem(`pic${usuario}`) === null )  {
+
+    
+        localStorage.setItem(`pic${usuario.innerHTML}`,reader.result) ; 
+        // readyState will be 2
+    } else {
+        localStorage.removeItem(`pic${usuario}`);
+        localStorage.setItem(`pic${usuario.innerHTML}`,reader.result) ; 
+    }
+      };
+    
+
 }
 
 (function () {
@@ -77,6 +119,7 @@ let tel = document.getElementById('tel1').value;
   })();
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  
 //Verificación de logueo
     let usuario = localStorage.getItem("user");
             if (usuario == null) {
@@ -117,10 +160,25 @@ document.getElementById('surname2').value = perfil[0].surname2
 document.getElementById('tel1').value = perfil[0].tel
 
 
+
    
 
             } else {
                 console.log('no existe perfil guardado')
             }
+//imagen
+let savedPic = localStorage.getItem(`pic${usuario}`)
+if (savedPic !== null){
+    document.getElementById('imgps').src = savedPic
+} else {
+    document.getElementById('imgps').src = "/img/imgperfil.png"
+}
+
+
+
+
+
+
+
 
 })
